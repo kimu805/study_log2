@@ -1,4 +1,5 @@
 <script setup>
+import TaskList from '@/components/TaskList.vue';
 import { useTasksStore } from '@/stores/tasks';
 
   const tasksStore = useTasksStore()
@@ -9,22 +10,8 @@ import { useTasksStore } from '@/stores/tasks';
   <RouterLink :to="{ name: 'dashboard' }">ダッシュボードへ</RouterLink>
 
   <h2>未完了</h2>
-  <ul>
-    <li v-for="task in tasksStore.activeTasks" :key="task.id">
-      <label>
-        <input type="checkbox" v-model="task.isCompleted">
-        {{ task.title }}
-      </label>
-    </li>
-  </ul>
+  <TaskList :tasks="tasksStore.activeTasks" />
 
   <h2>完了</h2>
-  <ul>
-    <li v-for="task in tasksStore.completedTasks" :key="task.id">
-      <label>
-        <input type="checkbox" v-model="task.isCompleted">
-        {{ task.title }}
-      </label>
-    </li>
-  </ul>
+  <TaskList :tasks="tasksStore.completedTasks" />
 </template>
