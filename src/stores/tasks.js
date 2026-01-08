@@ -43,9 +43,17 @@ export const useTasksStore = defineStore("tasks", () => {
     })
   }
 
+  const updateTaskTitle = (id, newTitle) => {
+    if (!newTitle) return
+    const task = tasks.value.find(task => task.id === id)
+    if (task) {
+      task.title = newTitle
+    }
+  }
+
   return {
     tasks,
     completedTasks, activeTasks,
-    createTask
+    createTask, updateTaskTitle
   }
 })
