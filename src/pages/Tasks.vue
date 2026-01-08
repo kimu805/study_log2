@@ -1,4 +1,5 @@
 <script setup>
+import TaskForm from '@/components/TaskForm.vue';
 import TaskList from '@/components/TaskList.vue';
 import { useTasksStore } from '@/stores/tasks';
 
@@ -8,6 +9,10 @@ import { useTasksStore } from '@/stores/tasks';
 <template>
   <h1>Tasks</h1>
   <RouterLink :to="{ name: 'dashboard' }">ダッシュボードへ</RouterLink>
+
+  <div>
+    <TaskForm />
+  </div>
 
   <h2>未完了</h2>
   <TaskList :tasks="tasksStore.activeTasks" />

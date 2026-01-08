@@ -33,8 +33,19 @@ export const useTasksStore = defineStore("tasks", () => {
     return tasks.value.filter(task => !task.isCompleted)
   })
 
+  const createTask = (title) => {
+    if (!title) return 
+
+    tasks.value.push({
+      id: Date.now().toString(),
+      title,
+      isCompleted: false
+    })
+  }
+
   return {
     tasks,
-    completedTasks, activeTasks
+    completedTasks, activeTasks,
+    createTask
   }
 })

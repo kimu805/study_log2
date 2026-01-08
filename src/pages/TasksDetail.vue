@@ -15,8 +15,14 @@ import { useRoute } from 'vue-router';
   <h1>TasksDetail</h1>
   <RouterLink :to="{ name: 'tasks' }">タスク一覧へ</RouterLink>
 
-  <p><strong>タイトル：</strong>{{ task.title }}</p>
-  <p><strong>状態：</strong>
-    {{ task.isCompleted ? "完了" : "未完了" }}
-  </p>
+  <div v-if="task">
+    <p><strong>タイトル：</strong>{{ task.title }}</p>
+    <p><strong>状態：</strong>
+      {{ task.isCompleted ? "完了" : "未完了" }}
+    </p>
+  </div>
+
+  <div v-else>
+    <p>404 Not Found</p>
+  </div>
 </template>
