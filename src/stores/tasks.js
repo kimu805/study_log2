@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 export const useTasksStore = defineStore("tasks", () => {
   const tasks = ref([
@@ -25,7 +25,16 @@ export const useTasksStore = defineStore("tasks", () => {
     { id: '20', title: 'README作成', isCompleted: false }
   ])
 
+  const completedTasks = computed(() => {
+    return tasks.value.filter(task => task.isCompleted)
+  })
+
+  const activeTasks = computed(() => {
+    return tasks.value.filter(task => !task.isCompleted)
+  })
+
   return {
-    tasks
+    tasks,
+    completedTasks, activeTasks
   }
 })

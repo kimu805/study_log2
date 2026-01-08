@@ -8,7 +8,23 @@ import { useTasksStore } from '@/stores/tasks';
   <h1>Tasks</h1>
   <RouterLink :to="{ name: 'dashboard' }">ダッシュボードへ</RouterLink>
 
+  <h2>未完了</h2>
   <ul>
-    <li v-for="task in tasksStore.tasks" :key="task">{{ task.title }}</li>
+    <li v-for="task in tasksStore.activeTasks" :key="task.id">
+      <label>
+        <input type="checkbox" v-model="task.isCompleted">
+        {{ task.title }}
+      </label>
+    </li>
+  </ul>
+
+  <h2>完了</h2>
+  <ul>
+    <li v-for="task in tasksStore.completedTasks" :key="task.id">
+      <label>
+        <input type="checkbox" v-model="task.isCompleted">
+        {{ task.title }}
+      </label>
+    </li>
   </ul>
 </template>
